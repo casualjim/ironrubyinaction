@@ -1,0 +1,7 @@
+require File.dirname(__FILE__) + "/clr/descriptor"
+require File.dirname(__FILE__) + "/clr/messenger"
+require File.dirname(__FILE__) + "/clr/isolator"
+require File.dirname(__FILE__) + "/clr/expectation"
+require File.dirname(__FILE__) + "/clr/isolation"
+require File.dirname(__FILE__) + "/clr/event_verification"
+require File.dirname(__FILE__) + "/clr/method_call_recorder"

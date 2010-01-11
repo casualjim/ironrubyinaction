@@ -1,0 +1,224 @@
+require File.dirname(__FILE__) + "/../spec_helper"
+
+describe "CLR isolations for ruby objects" do
+
+  describe "when isolating CLR interfaces" do
+    before do
+      @soldier = Soldier.new
+      @weapon = isolate(ClrModels::IWeapon)
+    end
+
+    it "should work without expectations" do
+      @soldier.attack Soldier.new, @weapon
+
+      @weapon.should have_received(:attack)
+    end
+
+    it "should work for expectations with an argument constraint" do
+      soldier = Soldier.new
+      @weapon.when_receiving(:attack).with(soldier).return(5)
+
+      @soldier.attack(soldier, @weapon).should == 5
+
+      @weapon.should have_received(:attack).with(:any)
+    end
+
+    it "should work for expectations with an argument constraint when a wrong argument is passed in" do
+      @weapon.when_receiving(:attack).with(Soldier.new).return(5)
+
+      @soldier.attack(Soldier.new, @weapon).should == 0
+    end
+
+    it "should work for expectations with an argument constraint and an assertion argument constraint" do
+      soldier = Soldier.new
+      @weapon.when_receiving(:attack).with(soldier).return(5)
+
+      @soldier.attack(soldier, @weapon).should == 5
+
+      @weapon.should have_received(:attack).with(soldier)
+    end
+
+    it "should fail for expectations with an argument constraint and an assertion argument constraint" do
+      soldier = Soldier.new
+      @weapon.when_receiving(:attack).with(soldier).return(5)
+
+      @soldier.attack(soldier, @weapon).should == 5
+
+      @weapon.should_not have_received(:attack).with(Soldier.new)
+    end
+
+    it "should work with an expectation with any arguments" do
+      @weapon.when_receiving(:damage).return(5)
+
+      @soldier.is_killed_by?(@weapon).should be_true
+      @weapon.should have_received(:damage)
+    end
+
+    it "should work with an expectation getting different method call result" do
+      @weapon.when_receiving(:damage).return(2)
+
+      @soldier.is_killed_by?(@weapon).should be_false
+      @weapon.should have_received(:damage)
+    end
+
+    it "should work for an assertion on a specific argument" do
+      @weapon.when_receiving(:damage).return(2)
+
+      @soldier.is_killed_by?(@weapon).should be_false
+      @weapon.should have_received(:damage)
+    end
+
+  end
+
+  describe "when isolating CLR classes" do
+
+    before do
+      @weapon = Dagger.new
+      @ninja = isolate(ClrModels::Ninja)
+    end
+
+    it "should work without expectations" do
+      result = @weapon.attack @ninja
+      result.should == 0
+
+      @ninja.should have_received(:survive_attack_with).with(@weapon)
+    end
+
+    it "should work for expectations with an argument constraint" do
+      @ninja.when_receiving(:survive_attack_with).with(@weapon).return(5)
+
+      @weapon.attack(@ninja).should == 5
+
+      @ninja.should have_received(:survive_attack_with)
+    end
+
+    it "should work for expectations with an argument constraint when a wrong argument is passed in" do
+      @ninja.when_receiving(:survive_attack_with).with(@weapon).return(5)
+
+      @weapon.attack(Soldier.new).should == 8
+
+      @ninja.should_not have_received(:survive_attack_with).with(@weapon)
+    end
+
+    it "should work for expectations with an argument constraint and an assertion argument constraint" do
+      ninja = ClrModels::Ninja.new
+      @ninja.when_receiving(:survive_attack_with).with(@weapon).return(5)
+
+      @weapon.attack(@ninja).should == 5
+
+      @ninja.should have_received(:survive_attack_with).with(@weapon)
+    end
+
+    it "should fail for expectations with an argument constraint and an assertion argument constraint" do
+      ninja = ClrModels::Ninja.new
+      @ninja.when_receiving(:survive_attack_with).with(@weapon).return(5)
+
+      @weapon.attack(@ninja).should == 5
+
+      @ninja.should_not have_received(:survive_attack_with).with(Dagger.new)
+    end
+
+    it "should work with an expectation for any arguments" do
+      @ninja.when_receiving(:survive_attack_with).return(5)
+
+      result = @weapon.attack @ninja
+      result.should == 5
+
+      @ninja.should have_received(:survive_attack_with)
+    end
+
+    it "should work with an assertion for specific arguments" do
+      @ninja.when_receiving(:survive_attack_with) do |method_should|
+        method_should.return(5)
+      end
+
+      result = @weapon.attack @ninja
+      result.should == 5
+
+      @ninja.should have_received(:survive_attack_with).with(@weapon)
+    end
+
+    it "should fail for an assertion with wrong arguments" do
+      @ninja.when_receiving(:survive_attack_with) do |method_should|
+        method_should.return(5)
+      end
+
+      result = @weapon.attack @ninja
+      result.should == 5
+
+      @ninja.should_not have_received(:survive_attack_with).with(isolate(ClrModels::IWeapon))
+    end
+
+  end
+
+  describe "when isolating CLR instances" do
+
+    before do
+      @weapon = Dagger.new
+      @ninja = isolate(ClrModels::Ninja.new)
+    end
+
+    it "should work without expectations" do
+      result = @weapon.attack @ninja
+      result.should == 0
+
+      @ninja.should have_received(:survive_attack_with).with(@weapon)
+    end
+
+    it "should work for expectations with an argument constraint" do
+      @ninja.when_receiving(:survive_attack_with).with(@weapon).return(5)
+
+      @weapon.attack(@ninja).should == 5
+
+      @ninja.should have_received(:survive_attack_with)
+    end
+
+    it "should work for expectations with an argument constraint when a wrong argument is passed in" do
+      @ninja.when_receiving(:survive_attack_with).with(@weapon).return(5)
+
+      @weapon.attack(Soldier.new).should == 8
+
+      @ninja.should_not have_received(:survive_attack_with).with(@weapon)
+    end
+
+    it "should work for expectations with an argument constraint and an assertion argument constraint" do
+      ninja = ClrModels::Ninja.new
+      @ninja.when_receiving(:survive_attack_with).with(@weapon).return(5)
+
+      @weapon.attack(@ninja).should == 5
+
+      @ninja.should have_received(:survive_attack_with).with(@weapon)
+    end
+
+    it "should fail for expectations with an argument constraint and an assertion argument constraint" do
+      ninja = ClrModels::Ninja.new
+      @ninja.when_receiving(:survive_attack_with).with(@weapon).return(5)
+
+      @weapon.attack(@ninja).should == 5
+
+      @ninja.should_not have_received(:survive_attack_with).with(Dagger.new)
+    end
+
+    it "should work with an expectation for any arguments" do
+      @ninja.when_receiving(:survive_attack_with).return(5)
+
+      result = @weapon.attack @ninja
+      result.should == 5
+
+      @ninja.should have_received(:survive_attack_with)
+    end
+
+    it "should fail for an assertion for specific arguments" do
+      @ninja.when_receiving(:survive_attack_with) do |method_should|
+        method_should.return(5)
+      end
+
+      result = @weapon.attack @ninja
+      result.should == 5
+      @ninja.should have_received(:survive_attack_with).with(@weapon)
+    end
+
+
+  end
+
+end
