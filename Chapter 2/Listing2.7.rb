@@ -26,7 +26,7 @@ def snack?(state)
 	was_unknown
 end
 
-if snack?(state) : puts "Do you want to try again?"; else puts "Do you want more food?";  end; 
+if snack?(state); puts "Do you want to try again?"; else puts "Do you want more food?";  end; 
 
 want_more = gets.chomp
 

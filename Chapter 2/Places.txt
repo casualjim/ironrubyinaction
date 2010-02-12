@@ -1,0 +1,4 @@
+name,description
+"Antwerp","home"
+"Moscow","too cold"
+"Milan","hosting this event"

@@ -18,6 +18,7 @@ class PickyEater
 		rescue
 			puts "This was one of the unliked foods"
 			@food = old_food
+		
 		end
 	end
 end
@@ -39,3 +40,13 @@ puts "Currently eating: #{picky_eater.food}"
 # about to serve salad
 # This was one of the unliked foods
 # Currently eating: sushi
+class Objec
+  def using(o)
+    begin
+      yield o if block_given?
+    ensure
+      o.dispose if o.respond_to? :dispose
+    end
+  end
+end
+
