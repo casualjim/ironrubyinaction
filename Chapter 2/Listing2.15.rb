@@ -7,7 +7,7 @@ lists = files.collect do |file|
 	eval(File.basename(file, '.txt').capitalize).populate
 end
 
-list = lists[0]       
+list = lists[1]       
 puts list[0].to_s
 puts list[1].inspect
 
