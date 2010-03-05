@@ -1,0 +1,26 @@
+<Deployment xmlns="http://schemas.microsoft.com/client/2007/deployment" 
+			xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+			RuntimeVersion="2.0.31005.0" 
+			EntryPointAssembly="Microsoft.Scripting.Silverlight" 	
+			EntryPointType="Microsoft.Scripting.Silverlight.DynamicApplication">
+  <!-- Add assembly references here -->
+  <Deployment.Parts>
+	<!-- Required assemblies -->
+    <AssemblyPart Source="Microsoft.Scripting.Silverlight.dll" />
+    <AssemblyPart Source="Microsoft.Scripting.ExtensionAttribute.dll" />
+    <AssemblyPart Source="Microsoft.Scripting.Core.dll" />
+    <AssemblyPart Source="Microsoft.Scripting.dll" />
+    <AssemblyPart Source="Microsoft.Dynamic.dll" />
+    <AssemblyPart Source="IronRuby.dll" />
+    <AssemblyPart Source="IronRuby.Libraries.dll" />
+		<AssemblyPart Source="System.Xml.dll" />
+		<AssemblyPart Source="bin/System.Xml.dll" />
+		<AssemblyPart Source="app/bin/System.Xml.dll" />
+		<AssemblyPart Source="System.Xml.Linq.dll" />
+		<AssemblyPart Source="bin/System.Xml.Linq.dll" />
+		<AssemblyPart Source="app/bin/System.Xml.Linq.dll" />
+	  <!-- Include IronPython DLL's so we can use IronPython classes as well -->
+	  <AssemblyPart Source="IronPython.dll" />
+    <AssemblyPart Source="IronPython.Libraries.dll" />
+  </Deployment.Parts>
+</Deployment>
