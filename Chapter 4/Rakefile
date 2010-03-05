@@ -1,0 +1,30 @@
+def	msbuild(sln)
+  cmd = if ENV['OS'] == "Windows_NT"
+         unless `where msbuild`.chomp.empty?
+           "msbuild"
+         else
+           begin
+             "%WINDIR%/Microsoft.NET/Framework/v4.0.30128/msbuild.exe"
+           rescue RuntimeError => x
+             raise "MSBuild not found. Is it on your PATH?"
+           end
+         end
+       else
+         "xbuild"
+       end
+  sh "#{cmd} /clp:ErrorsOnly;WarningsOnly /nologo #{sln}"
+end
+
+desc "Build the helpers project"
+task :helpers do
+  puts "Building the helpers project"
+  sln = ENV['SLN'] || Dir['controls/*.sln'].first
+  msbuild sln
+end
+
+desc "Runs the application"
+task :run => :helpers do
+  sh "ir lib/witty.rb"
+end
+
+task :default => :run
