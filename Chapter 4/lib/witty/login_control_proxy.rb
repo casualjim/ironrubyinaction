@@ -7,7 +7,6 @@ module Witty
       load_view
       view.loaded { |_, _| self.username.focus }
       login_button.click &method(:authenticate)
-      view.data_context
     end
 
     def on_logged_in(&b)
