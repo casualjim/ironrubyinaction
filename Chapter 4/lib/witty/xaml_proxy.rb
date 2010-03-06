@@ -30,15 +30,6 @@ module Witty
       view.visibility = visi.to_sym.to_visibility if view.respond_to?(:visibility)
     end
 
-    # shows the proxied view
-    def show
-      Witty::Application.current.has_main_window? ? view.show : view
-    end
-
-    def invoke(element, method, *args, &b)
-      view.send(element.to_sym).send(method.to_sym, *args, &b)
-    end
-
     def play_storyboard(storyboard_name)
       storyboard = view.resources[storyboard_name.to_s.to_clr_string]
       storyboard.begin view unless storyboard.nil?
@@ -77,16 +68,6 @@ module Witty
         parent.content = vw
       elsif parent.respond_to? :children
         parent.children.add vw
-      end
-    end
-
-    class << self
-
-      # creates an instance of the view specified by the +view_name+
-      def load(view_name)
-        vw = new view_name.to_s
-        vw.load_view
-        vw
       end
     end
 

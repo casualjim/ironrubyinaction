@@ -1,4 +1,7 @@
 class RoundConverter
+
+  include System::Windows::Data::IValueConverter
+
   def convert(value, target_type, parameter, culture)
     value.round
   end

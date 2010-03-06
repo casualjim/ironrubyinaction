@@ -20,32 +20,32 @@ require 'System.Windows.Presentation, Version=3.5.0.0, Culture=neutral, PublicKe
 require 'UIAutomationProvider, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35'
 require 'System.Security, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'
 require "System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+
 require 'Witty.Controls.dll'
 
 lst = System::Collections::Generic::List.of(System::String).new
 $:.each {|pth| lst.add pth.to_clr_string }
-Witty::Controls::DlrHelper.load_paths = lst
-Witty::Controls::DlrHelper.app_root = APP_ROOT
+Witty::Controls::RubyConverterExtension.load_paths = lst
 
 require 'witty/constants'
 require 'witty/core_ext'
 
 %w(
-        System
-        System::Net
-        System::Xml
-        System::IO
-        System::Web
-        System::Text
-        System::Threading
-        System::Windows
-        System::Windows::Threading
-        System::Windows::Data
-        System::Windows::Markup
-        System::Collections::ObjectModel
-        Witty
-        Witty::Controls
-      ).each { |ns| Object.send :include, eval(ns) }
+  System
+  System::Net
+  System::Xml
+  System::IO
+  System::Web
+  System::Text
+  System::Threading
+  System::Windows
+  System::Windows::Threading
+  System::Windows::Data
+  System::Windows::Markup
+  System::Collections::ObjectModel
+  Witty
+  Witty::Controls
+).each { |ns| Object.send :include, eval(ns) }
 
 require 'witty/databinding'
 require 'witty/secure_string'
@@ -58,7 +58,7 @@ require 'witty/xaml_proxy'
 require 'witty/models/model_base'
 require 'witty/models/tweet_base'
 
-Dir[APP_ROOT + '/lib/witty/{models,converters}/*.rb'].each { |file| require file.gsub(/#{APP_ROOT}\/lib/, '') }
+Dir[APP_ROOT + '/lib/witty/models/*.rb'].each { |file| require file.gsub(/#{APP_ROOT}\/lib/, '') }
 
 require 'witty/login_control_proxy'
 require 'witty/main_window_proxy'

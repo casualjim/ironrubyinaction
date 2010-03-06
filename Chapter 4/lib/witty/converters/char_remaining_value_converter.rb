@@ -1,5 +1,7 @@
 class CharRemainingValueConverter
 
+  include System::Windows::Data::IValueConverter
+
   def convert(value, target_type, parameter, culture)
     140 - value
   end

@@ -60,11 +60,9 @@
       <DependentUpon>FilterText.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\TweetTextBlock.cs" />
-    <Compile Include="DlrConverterExtension.cs" />
-    <Compile Include="DlrHelper.cs" />
+    <Compile Include="RubyConverterExtension.cs" />
     <Compile Include="StringExtensions.cs" />
     <Compile Include="Inflector.cs" />
-    <Compile Include="DlrConverter.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

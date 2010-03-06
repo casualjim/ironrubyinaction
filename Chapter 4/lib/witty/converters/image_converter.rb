@@ -1,4 +1,7 @@
 class ImageConverter
+
+  include System::Windows::Data::IValueConverter
+
   def convert(value, target_type, parameter, culture)
     value
   end

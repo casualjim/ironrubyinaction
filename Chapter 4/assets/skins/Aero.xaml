@@ -3,9 +3,6 @@
                     xmlns:aero="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
                     xmlns:witty="clr-namespace:Witty.Controls;assembly=Witty.Controls" >
 
-  <witty:DlrConverter x:Key="IndexToIsAlternateRowConverter" ConverterName="index_to_is_alternate_row" />
-  <witty:DlrConverter x:Key="ImageConverter" ConverterName="image" />
-
   <LinearGradientBrush x:Key="PrimaryBackgroundBrush" StartPoint="0.5,1" EndPoint="0.5,0">
     <GradientStop Color="#FF000104" Offset="0"/>
     <GradientStop Color="#FF02070B" Offset="0.494507"/>
@@ -66,7 +63,7 @@
         <Border Width="50" Height="50" Background="#FFF" BorderBrush="{DynamicResource ImageBorderBrush}"
                 BorderThickness="1" CornerRadius="2">
           <Image Width="48" Height="48"
-                 Source="{Binding Path=user.profile_image_url, Converter={StaticResource ImageConverter}}"
+                 Source="{Binding Path=user.profile_image_url, Converter={witty:RubyConverter ConverterName=image}}"
                  x:Name="user_image"/>
         </Border>
       </Grid>
@@ -133,7 +130,7 @@
             <!--<Trigger Property="IsSelected" Value="true">
                 <Setter Property="Background" Value="{StaticResource SelectedBackgroundBrush}"/>
             </Trigger>-->
-            <DataTrigger Binding="{Binding Index, Converter={StaticResource IndexToIsAlternateRowConverter}}"
+            <DataTrigger Binding="{Binding Index, Converter={witty:RubyConverter ConverterName=IndexToIsAlternateRow}}"
                          Value="true">
               <Setter Property="Background" Value="{StaticResource AlternatingBackgroundBrush}"/>
             </DataTrigger>

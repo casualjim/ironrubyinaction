@@ -1,4 +1,7 @@
 class IndexToIsAlternateRowConverter
+
+  include System::Windows::Data::IValueConverter
+
   def convert(value, target_type, parameter, culture)
     value % 2 == 1
   end
