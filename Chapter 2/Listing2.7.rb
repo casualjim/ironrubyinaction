@@ -1,23 +1,14 @@
-state = "hungry" 
-
-if state == "hungry" 
-	puts "You are hungry, maybe I can help." 
-else
-	puts "No needs at the moment, maybe later?"
-end
-
-def snack?(state)
-	puts "What would you like to eat (apple, sandwich, salad)?" if state == "hungry"        
+def which_snack?
+	puts "What would you like to eat (apple, sandwich, salad)?"        
 	
 	food = gets.chomp
 	was_unknown = false
 	
-	if food == "apple" 
-		puts "There are apples in the fruit basket in the lounge." 
-	elsif food == "sandwich"
-		puts "You can raid the fridge for your sandwich. There is bread in the pantry." 
-	elsif food == "salad"
-		puts "There are plenty of ingredients for a salad in the fridge." 
+	case food
+	when "apple": puts "There are apples in the fruit basket in the lounge." 
+	when "sandwich"
+		puts "You can raid the fridge. There is bread in the pantry." 
+	when "salad" then puts "There are plenty of ingredients for a salad in the fridge."
 	else
 		was_unknown = true
 		puts "I'm sorry but I don't understand your request."
@@ -26,24 +17,42 @@ def snack?(state)
 	was_unknown
 end
 
-if snack?(state); puts "Do you want to try again?"; else puts "Do you want more food?";  end; 
+def service_need(state)
+	case
+	when state == "hungry" 
+		want_more = "yes"
+		while want_more == "yes"
+			puts which_snack? ? "Do you want to try again?" : "Do you want more food?"
+			want_more = gets.chomp
+		end
+		state = "" if want_more == "no"
+	when state == "thirsty" 
+		puts "I would have to refer you to the nearest bar."
+		state = "done"
+	else
+		puts "May I can be of assistance (hungry/thirsty/done)?"
+		state = gets.chomp
+	end
+	state
+end
 
-want_more = gets.chomp
-
-snack?(state) unless want_more == "no" 						      	     
-
+state = "" 
+until state == "done" 
+	state = service_need(state)	
+end
 puts "Thank you for using my services."
 
 
 # One path could output the following:
 #
-# You are hungry, maybe I can help.
+# May I can be of assistance (hungry/thirsty/done)?
+# hungry
 # What would you like to eat (apple, sandwich, salad)?
-# ap
-# I'm sorry but I don't understand your request
-# Do you want to try again?
-# yes
-# What would you like to eat (apple, sandwich, salad)?
-# sandwich
-# You can raid the fridge for your sandwich. There is bread in the pantry.
-# thank you for using my services
+# apple
+# There are apples in the fruit basket in the lounge.
+# Do you want more food?
+# no
+# May I can be of assistance (hungry/thirsty/done)?
+# thirsty
+# I would have to refer you to the nearest bar.
+# Thank you for using my services.

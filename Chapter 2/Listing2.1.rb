@@ -13,11 +13,12 @@ class Album
 	
 end
 
-#album = Album.new("Ruby Greatest Hits", "Various", ["Summer of 95", "Every character you type", "RubyEyed Girl"])
-#
-#puts "Album: "
-#puts album.print
+if __FILE__ == $0
+  album = Album.new("Ruby Greatest Hits", "Various", ["Summer of 95", "Every character you type", "RubyEyed Girl"])
 
+  puts "Album: "
+  puts album.print
+end
 # outputs the following:
 #
 # Album:
