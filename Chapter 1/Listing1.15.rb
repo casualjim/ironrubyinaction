@@ -5,7 +5,7 @@ class HelloWorld
 	include Printable
 	
 	def initialize
-		@message = "Hello world !!!"
+		@message = "Hello, World!!!"
 	end
 	
 end

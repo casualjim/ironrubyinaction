@@ -5,6 +5,10 @@ namespace CSharp
 {
     public class HelloWorldLCG
     {
+        public static void Main(string[] args)
+        {
+            Demonstrate();
+        }
         public static void Demonstrate()
         {
             DynamicMethod dm = new DynamicMethod("HelloWorld", typeof(void), new Type[] { }, typeof(HelloWorldLCG), false);
@@ -15,7 +19,6 @@ namespace CSharp
             il.Emit(OpCodes.Ret);
 
             dm.Invoke(null, null);
-
         }     
     }
 }

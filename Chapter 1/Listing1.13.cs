@@ -10,7 +10,7 @@ namespace CSharp
         static void Main(string[] args)
         {
            
-            List<object> printables = new List<object> { new HelloWorld(), new Book("IronPython In Action") };
+            List<object> printables = new List<object> { new HelloWorld(), new Book("IronRuby In Action") };
 
             printables.ForEach(printable => Output(printable as IPrintable));
 

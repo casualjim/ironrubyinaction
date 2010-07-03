@@ -7,6 +7,7 @@ a = 5 + 5
 #implements a to_s method that will be called 
 #to convert this value to a string
 puts "the type: #{a.class.to_s}, the value: #{a}" # a.to_s => "10"
+puts "the type: #{a.to_s.class.to_s}, the value: #{a}" # a.to_s => "10"
 
 # The example below is a valid use in dynamic languages
 a = "123" 

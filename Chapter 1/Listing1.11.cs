@@ -6,7 +6,7 @@ namespace CSharp
 
         public HelloWorld()
         {
-            message = "Hello world !!!";
+            message = "Hello, World!!!";
         }
 
         public string Message

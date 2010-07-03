@@ -2,6 +2,10 @@ namespace CSharp
 {
     public class StaticTyping
     {
+        public static void Main(string[] args)
+        {
+            Demonstrate();
+        }
         public static void Demonstrate()
         {
             int i = 5;

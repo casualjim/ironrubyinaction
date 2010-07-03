@@ -1,4 +1,10 @@
-public static void Main(string[] args)
+namespace CSharp
 {
-        System.Console.WriteLine("Hello, World!!!"); //outputs Hello, World!!!
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            System.Console.WriteLine("Hello, World!!!"); //outputs Hello, World!!!
+        }
+    }
 }

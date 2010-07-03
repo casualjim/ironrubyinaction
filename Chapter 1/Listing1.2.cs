@@ -2,6 +2,10 @@ namespace CSharp
 {
     public class TypeInference
     {
+        public static void Main(string[] args)
+        {
+            Demonstrate();
+        }
         public static void Demonstrate()
         {
             var i = 5;
