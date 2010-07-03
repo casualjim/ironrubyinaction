@@ -1,4 +1,4 @@
-
+*.exe
 /Chapter 4/bin/IronRuby.Libraries.dll
 /Chapter 4/bin/IronRuby.dll
 /Chapter 4/bin/J832.Common.dll
