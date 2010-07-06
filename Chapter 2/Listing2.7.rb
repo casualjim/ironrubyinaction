@@ -21,7 +21,7 @@ def service_need(state)
 	case
 	when state == "hungry" 
 		want_more = "yes"
-		while want_more == "yes"
+		while want_more == "yes" #keep on eating
 			puts which_snack? ? "Do you want to try again?" : "Do you want more food?"
 			want_more = gets.chomp
 		end
@@ -30,14 +30,14 @@ def service_need(state)
 		puts "I would have to refer you to the nearest bar."
 		state = "done"
 	else
-		puts "May I can be of assistance (hungry/thirsty/done)?"
+		puts "May I be of assistance (hungry/thirsty/done)?"
 		state = gets.chomp
 	end
 	state
 end
 
 state = "" 
-until state == "done" 
+until state == "done" # start the conversation
 	state = service_need(state)	
 end
 puts "Thank you for using my services."

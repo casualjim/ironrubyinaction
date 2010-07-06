@@ -40,13 +40,15 @@ end
 # a cd is a more specific type of album but not different in any way
 class Cd < Album; end
 	
-cd = Cd.new("Ruby Greatest Hits", "Various", ["Summer of 95", "Every character you type", "RubyEyed Girl"])
-single = Single.new("Ruby Greatest Hits", "Various", ["Summer of 95", "Every character you type", "RubyEyed Girl"])
-dvd = Dvd.new("Ruby Greatest Hits", "Various", ["Summer of 95", "Every character you type", "RubyEyed Girl"], ["First class citizen", "Ruby rush", "Lethal Ruby"])
+if __FILE__ == $0
+  cd = Cd.new("Ruby Greatest Hits", "Various", ["Summer of 95", "Every character you type", "RubyEyed Girl"])
+  single = Single.new("Ruby Greatest Hits", "Various", ["Summer of 95", "Every character you type", "RubyEyed Girl"])
+  dvd = Dvd.new("Ruby Greatest Hits", "Various", ["Summer of 95", "Every character you type", "RubyEyed Girl"], ["First class citizen", "Ruby rush", "Lethal Ruby"])
 
-puts "Album:\n#{cd.print}\n\n"
-puts "Album:\n#{single.print}\n\n"
-puts "Album:\n#{dvd.print}\n\n"
+  puts "Album:\n#{cd.print}\n\n"
+  puts "Album:\n#{single.print}\n\n"
+  puts "Album:\n#{dvd.print}\n\n"
+end
 
 # outputs the following:
 #

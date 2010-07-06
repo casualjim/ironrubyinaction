@@ -1,6 +1,7 @@
 class MusicLibrary < Array
 	
 	def add_album(artist, title)
+        # The << operator pushes an item onto the end of the array.
 		self << [artist, title]
 		self
 	end
@@ -10,6 +11,8 @@ class MusicLibrary < Array
 	end
 	
 	def search_by_artist_or_title(key)
+        # reject returns a new array containing elements that return false
+        # to the provided expression.
 		reject { |b| !match_item(b, 0, key) && !match_item(b, 1, key) }
 	end  
 	
@@ -20,7 +23,8 @@ class MusicLibrary < Array
 	
 	def method_missing(method, *args)
 		method_match = /find_(.+)/.match(method.to_s)
-		search_by_artist_or_title(method_match.captures[0]) if method_match
+		return search_by_artist_or_title(method_match.captures[0]) if method_match
+        super
 	end
 end
 
@@ -37,6 +41,13 @@ l.find_Ma.each do |item|; p item; end
 p "Find Bu:"
 l.find_Bu.each do |item|; p item; end
 
+begin
+    l.nonexisting_Kravitz
+rescue
+    # p dumps a variable to the screen, hence the quotes in the output.
+    p "The method nonexisting_Kravitz doesn't exist"
+end
+
 # Outputs the following:
 #
 # "Find Kravitz:"
@@ -46,3 +57,4 @@ l.find_Bu.each do |item|; p item; end
 # ["Massive Attack", "Safe from harm"]
 # "Find Bu:"
 # ["Paul Oakenfold", "Bunkha"]
+# "The method nonexisting_Kravitz doesn't exist"

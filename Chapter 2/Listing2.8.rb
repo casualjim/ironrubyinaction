@@ -1,3 +1,4 @@
+# %w() will create an array of strings.
 @foods = %w(apple salad sandwich burger quesadilla)
 
 def get_random_food

@@ -10,7 +10,7 @@ else
 end
 
 def snack?(state)
-	puts "What would you like to eat (apple, sandwich, salad)?" if state == "hungry"        
+	puts "What would you like to eat (apple, sandwich, salad)?" if state == "hungry"
 	
 	food = gets.chomp
 	was_unknown = false
@@ -28,7 +28,7 @@ def snack?(state)
 	was_unknown
 end
 
-if snack?(state) : puts "Do you want to try again?"; else puts "Do you want more food?";  end; 
+if snack?(state) : puts "Do you want to try again?"; else puts "Do you want more food?"; end;
 want_more = gets.chomp
 
 snack?(state) unless want_more == "no"

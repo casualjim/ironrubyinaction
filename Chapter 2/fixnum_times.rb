@@ -1,5 +1,4 @@
 a = 73
-
 6.times do 
 	puts "Value of a: #{a}, Class of a: #{a.class}"
 	a *= a
