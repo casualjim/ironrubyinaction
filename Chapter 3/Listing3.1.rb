@@ -4,4 +4,4 @@ end
 
 puts multiply(3, 5)
 
-# Outputs: 15
+# Outputs : 15

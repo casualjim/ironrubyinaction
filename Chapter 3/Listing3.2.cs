@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Scripting;
 using Microsoft.Scripting.Hosting;
-using Ruby;
+using IronRuby;
 
 namespace DLRHost
 {
@@ -12,15 +9,13 @@ namespace DLRHost
     {
         static void Main(string[] args)
         {
-            ScriptRuntime runtime = IronRuby.CreateRuntime();
+            ScriptRuntime runtime = Ruby.CreateRuntime(); 
 
+            Console.WriteLine("Executing from file:"); 
+            runtime.ExecuteFile("hello_world.rb"); 
 
-			Console.WriteLine("Executing from file:");
-			runtime.ExecuteFile("hello_world.rb");
-
-			Console.WriteLine("Press any key to close...");
-			Console.ReadKey();
-			
+            Console.WriteLine("Press any key to close...");
+            Console.ReadKey();
         }
     }
 }

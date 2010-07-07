@@ -12,4 +12,5 @@
 * Section 3.3.1 paragraph 1 managed JavaScript is no longer available. You could switch that to IronJS.
 * Section 3.3.2 paragraph 1 the url http://blogs.msdn.com/ironpython/archive/2008/03/16/dlr-resources.aspx is now http://blogs.msdn.com/b/ironpython/archive/2008/03/16/dlr-resources.aspx. The old url will redirect, but who knows for how long?
 * Listing 3.2 to create the runtime, you must use Ruby.CreateRuntime(), not IronRuby.CreateRuntime().
+* Listing 3.2 I had to recreate hello_world.rb in order to get it to work. I think this was related to the file being created on a *nix box.
 
