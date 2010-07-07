@@ -13,4 +13,9 @@
 * Section 3.3.2 paragraph 1 the url http://blogs.msdn.com/ironpython/archive/2008/03/16/dlr-resources.aspx is now http://blogs.msdn.com/b/ironpython/archive/2008/03/16/dlr-resources.aspx. The old url will redirect, but who knows for how long?
 * Listing 3.2 to create the runtime, you must use Ruby.CreateRuntime(), not IronRuby.CreateRuntime().
 * Listing 3.2 I had to recreate hello_world.rb in order to get it to work. I think this was related to the file being created on a *nix box.
+* Listing 3.2 paragraph following the listing states, "It might be worth noting that for in order to work you need to set the Copy to Output Directory property on the hello_world.rb file to Copy if newer. If you hit F5 or run the application you will see that it executes the ruby file," but no .csproj is provided in the source files. Consider adding the project or add a note stating that if the reader chooses to use a .csproj that he/she will need to do the steps in that statement.
+* Listing 3.3 shows the TODO for updating the ScriptRuntime api. I've made the necessary changes in the source file.
+* Listing 3.3 paragraph following states, "To do this we call the method Execute on the scope," but this should state, "To do this we call the method Execute on the engine and pass it our Ruby source code and the scope."
+* Listing 3.3 second paragraph following states, "Listing 3.4 shows how to attach ruby code to event handlers," but Listing 3.4 only shows the StringAdder C# class and no examples of adding event handlers. Consider removing this statement or revise it to state that Listing 3.5 will demonstrate this feature.
+* Listing 3.5 has been revised in the source files to match the DLR 1.0 hosting api. I also updated the list of Iron-* languages to match the current set (of which I know).
 

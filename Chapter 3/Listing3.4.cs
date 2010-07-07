@@ -1,27 +1,29 @@
-public class StringAdder
+using System;
+using System.Collections.Generic;
+
+namespace DLRHost
 {
-    private readonly List<string> _stringList;
-
-    public delegate void OnStringAddedDelegate(string addedValue);	1
-    public event OnStringAddedDelegate OnStringAdded;	2
-
-
-
-    public StringAdder()
+    public class StringAdder
     {
-        _stringList = new List<string>();
-    }
+        private readonly List<string> _stringList;
 
+        public delegate void OnStringAddedDelegate(string addedValue);
+        public event OnStringAddedDelegate OnStringAdded;
 
-    public void Add(string value)
-    {
-        _stringList.Add(value);
-        OnStringAdded(value);	3
-    }
+        public StringAdder()
+        {
+            _stringList = new List<string>();
+        }
 
+        public void Add(string value)
+        {
+            _stringList.Add(value);
+            OnStringAdded(value);
+        }
 
-    public override string ToString()
-    {
-        return string.Join(", ", _stringList.ToArray());
+        public override string ToString()
+        {
+            return string.Join(", ", _stringList.ToArray());
+        }
     }
 }

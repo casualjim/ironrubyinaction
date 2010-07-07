@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Scripting;
 using Microsoft.Scripting.Hosting;
-using Ruby;
+using IronRuby;
 
 namespace DLRHost
 {
@@ -12,29 +9,21 @@ namespace DLRHost
     {
         static void Main(string[] args)
         {
-            //TODO: update when hosting API changes
-			ScriptRuntime runtime = IronRuby.CreateRuntime();
-			ScriptEngine engine = IronRuby.GetEngine(runtime);
-			ScriptScope scope = engine.CreateScope();
+            ScriptRuntime runtime = Ruby.CreateRuntime();
+            ScriptEngine engine = Ruby.GetEngine(runtime);
+            ScriptScope scope = engine.CreateScope();
+            scope.SetVariable("txt", "IronRuby is awesome!");
+            engine.Execute("def self.upper; txt.to_upper; end;", scope);
 
+            string result = scope.GetVariable<Func<string>>("upper")();
+            Console.WriteLine("The result is: " + result);
+            Console.WriteLine("");
 
-			scope.SetVariable("txt", "IronRuby is awesome!");
-			scope.Execute("def self.upper; txt.to_upper; end;");
+            Console.WriteLine("Press any key to close...");
+            Console.ReadKey();
 
-
-			string result = scope.GetVariable<Function<string>>("upper")();
-			Console.WriteLine("The result is: " + result);
-			Console.WriteLine("");
-
-
-			Console.WriteLine("Press any key to close...");
-			Console.ReadKey();
-
-
-			// Outputs the following:
-			// The result is: IRONRUBY IS AWESOME
-			
-			
+            // Outputs the following:
+            // The result is: IRONRUBY IS AWESOME
         }
     }
 }
