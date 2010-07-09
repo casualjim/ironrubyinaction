@@ -7,15 +7,13 @@ namespace CSharp
     {
         public static void Main(string[] args)
         {
-            Demonstrate();
-        }
-        public static void Demonstrate()
-        {
-            DynamicMethod dm = new DynamicMethod("HelloWorld", typeof(void), new Type[] { }, typeof(HelloWorldLCG), false);
+            DynamicMethod dm = new DynamicMethod("HelloWorld", typeof(void), 
+                                                 new Type[] { }, typeof(HelloWorldLCG), false);
 
             ILGenerator il = dm.GetILGenerator();
             il.Emit(OpCodes.Ldstr, "hello, world");
-            il.Emit(OpCodes.Call, typeof(Console).GetMethod("WriteLine", new Type[] { typeof(string) }));
+            il.Emit(OpCodes.Call, typeof(Console).GetMethod("WriteLine",
+                    new Type[] { typeof(string) }));
             il.Emit(OpCodes.Ret);
 
             dm.Invoke(null, null);

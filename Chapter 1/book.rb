@@ -1,4 +1,4 @@
-require 'listing1.14.rb'
+require 'printable'
 
 class Book
 	include Printable

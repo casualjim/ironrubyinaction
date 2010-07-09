@@ -1,5 +1,5 @@
-require 'listing1.15.rb'
-require 'listing1.16.rb'
+require 'hello_world'
+require 'book'
 
 printables = [HelloWorld.new, Book.new("IronRuby In Action")]
 

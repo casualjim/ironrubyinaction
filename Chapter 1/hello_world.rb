@@ -1,7 +1,6 @@
-require 'listing1.14.rb'
+require 'printable'
 
 class HelloWorld
-	
 	include Printable
 	
 	def initialize

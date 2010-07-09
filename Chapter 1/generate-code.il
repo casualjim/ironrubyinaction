@@ -1,10 +1,10 @@
 ﻿.assembly helloworld {}
 
-.method public static void MyMain() cil managed
+.method public hidebysig static void Main() cil managed
 {
   	.entrypoint
 
-  	ldstr	"hello world!"
+  	ldstr	"Hello, World!!!"
   	call	void [mscorlib]System.Console::WriteLine(string)
   	ret
 }

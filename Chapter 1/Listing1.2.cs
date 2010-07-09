@@ -4,10 +4,6 @@ namespace CSharp
     {
         public static void Main(string[] args)
         {
-            Demonstrate();
-        }
-        public static void Demonstrate()
-        {
             var i = 5;
 
             i = i + 5;
@@ -16,7 +12,8 @@ namespace CSharp
 
             // i = "hello"; // Still won't compile because i is inferred as an int
 
-            System.Console.WriteLine("Converted type: {0}, value: \"{1}\"", i.ToString().GetType().Name, i);
+            System.Console.WriteLine("Converted type: {0}, value: \"{1}\"",
+                                     i.ToString().GetType().Name, i);
         }
     }
 }

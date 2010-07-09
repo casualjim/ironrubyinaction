@@ -1,7 +1,7 @@
 #dynamic but strong typed.
 
 a = 5
-a = 5 + 5
+a = a + 5
 
 #the following is valid because a number 
 #implements a to_s method that will be called 
