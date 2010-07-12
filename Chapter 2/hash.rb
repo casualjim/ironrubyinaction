@@ -1,4 +1,4 @@
-hello = "Hello, World!!!"
+hello = "hello reader"
 hash = { :hello => hello, :string_value => "a string value in the hash", :int_value => 3}
 
 puts hash[:hello]

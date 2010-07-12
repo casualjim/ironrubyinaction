@@ -1,60 +1,44 @@
-class MusicLibrary < Array
-	
-	def add_album(artist, title)
-        # The << operator pushes an item onto the end of the array.
-		self << [artist, title]
-		self
-	end
-	
-	def search_by_artist(key)
-		reject { |b| !match_item(b, 0, key) }
-	end
-	
-	def search_by_artist_or_title(key)
-        # reject returns a new array containing elements that return false
-        # to the provided expression.
-		reject { |b| !match_item(b, 0, key) && !match_item(b, 1, key) }
-	end  
-	
-	private	
-	def match_item(b, index, key)
-		b[index].index(key) != nil
-	end
-	
-	def method_missing(method, *args)
-		method_match = /find_(.+)/.match(method.to_s)
-		return search_by_artist_or_title(method_match.captures[0]) if method_match
-        super
-	end
+require 'csv_record'
+
+dir = Dir.open('.')
+files = dir.reject { |entry| entry.slice(0, 1) == '.' || entry.slice(entry.length() - 4, entry.length()) != '.txt' }
+lists = files.collect do |file| 
+	CsvRecord.build_from(file) 
+	eval(File.basename(file, '.txt').capitalize).populate
 end
 
-l = MusicLibrary.new
-l.add_album("Lenny Kravitz", "Mama said").add_album("Kruder & Dorfmeister", "Sofa surfers")
-l.add_album("Massive Attack", "Safe from harm").add_album("Paul Oakenfold", "Bunkha")
+list = lists[0]
+puts list[0].to_s
+puts list[1].inspect
 
-p "Find Kravitz:"
-l.find_Kravitz.each do |item|; p item; end
-
-p "Find Ma:"
-l.find_Ma.each do |item|; p item; end
-
-p "Find Bu:"
-l.find_Bu.each do |item|; p item; end
-
-begin
-    l.nonexisting_Kravitz
-rescue
-    # p dumps a variable to the screen, hence the quotes in the output.
-    p "The method nonexisting_Kravitz doesn't exist"
+list.each do |person|
+	result = person.name      
+	if person.age < 18
+		result << " is under 18"
+	else
+		result << " is over 18"
+	end
+	lbs = person.weight * 2.2  
+	result << " and weighs #{lbs.floor} lbs"
+	p result
 end
 
-# Outputs the following:
+places = lists[1]
+puts places[0]
+
+places.each do |place|
+	puts "#{place.name} is #{place.description}"
+end
+
+# Generates the following output:
 #
-# "Find Kravitz:"
-# ["Lenny Kravitz", "Mama said"]
-# "Find Ma:"
-# ["Lenny Kravitz", "Mama said"]
-# ["Massive Attack", "Safe from harm"]
-# "Find Bu:"
-# ["Paul Oakenfold", "Bunkha"]
-# "The method nonexisting_Kravitz doesn't exist"
+# <People: name=Smith, John age=35 weight=175 height=5'10>
+# <People: name=Ford, Anne age=49 weight=142 height=5'4>
+# "Smith, John is over 18 and weighs 385 lbs"
+# "Ford, Anne is over 18 and weighs 312 lbs"
+# "Taylor, Burt is over 18 and weighs 380 lbs"
+# "Zubrin, Candace is over 18 and weighs 292 lbs"
+# <Places: name=Antwerp description=home>
+# Antwerp is home
+# Moscow is too cold
+# Milan is hosting this event

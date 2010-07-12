@@ -2,11 +2,11 @@ require 'Listing2.4'
 
 class AlbumList
 	
-	def each_in_range(range, &block)
-		@internal_list[range].each do |album|
-			yield album
-		end
-	end
+  def each_in_range(range, &block)
+    @internal_list[range].each do |album|
+      yield album
+    end
+  end
 end
 
 list = AlbumList.new

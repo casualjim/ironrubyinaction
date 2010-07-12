@@ -1,14 +1,13 @@
-require 'song_ops'
-
 class Song
 	
-	include SongOps
-	
-	attr_accessor :name
+  require 'song_ops'
+  include SongOps
+  
+  attr_accessor :name
 
-	def initialize(name = 'Ruby Tuesday')
-		@name = name
-	end
+  def initialize(name = 'Ruby Tuesday')
+      @name = name
+  end
 
 end
 

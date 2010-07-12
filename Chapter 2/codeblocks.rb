@@ -1,9 +1,9 @@
 def output
-	puts "About to execute given block"
-	
-	yield if block_given? # execute the block if one was given
-	
-	puts "After executing the block"
+  puts "About to execute given block"
+  
+  yield if block_given? # execute the block if one was given
+  
+  puts "After executing the block"
 end
 
 output { puts "Hello, World!!!" }

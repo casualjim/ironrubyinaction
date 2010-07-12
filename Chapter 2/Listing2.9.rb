@@ -40,13 +40,3 @@ puts "Currently eating: #{picky_eater.food}"
 # about to serve salad
 # This was one of the unliked foods
 # Currently eating: sushi
-class Object
-  def using(o)
-    begin
-      yield o if block_given?
-    ensure
-      o.dispose if o.respond_to? :dispose
-    end
-  end
-end
-
