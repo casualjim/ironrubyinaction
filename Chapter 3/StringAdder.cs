@@ -7,8 +7,8 @@ namespace DLRHost
     {
         private readonly List<string> _stringList;
 
-        public delegate void OnStringAddedDelegate(string addedValue);
-        public event OnStringAddedDelegate OnStringAdded;
+        public delegate void StringAddedDelegate(string addedValue);
+        public event StringAddedDelegate StringAdded;
 
         public StringAdder()
         {
@@ -18,7 +18,8 @@ namespace DLRHost
         public void Add(string value)
         {
             _stringList.Add(value);
-            OnStringAdded(value);
+            if (StringAdded != null)
+                StringAdded(value);
         }
 
         public override string ToString()

@@ -18,9 +18,9 @@ namespace DLRHost
             StringAdder adder = new StringAdder();
 
             engine.Execute("def self.string_added(val = ''); puts \"The string \\\"#{val}\\\" has been added.\"; end;", scope);
-            StringAdder.OnStringAddedDelegate functionPointer = scope.GetVariable<StringAdder.OnStringAddedDelegate>("string_added");
+            StringAdder.StringAddedDelegate functionPointer = scope.GetVariable<StringAdder.StringAddedDelegate>("string_added");
 
-            adder.OnStringAdded += functionPointer;
+            adder.StringAdded += functionPointer;
 
             Console.WriteLine("Initialisation complete. About to add some strings.\r\n");
             adder.Add("IronRuby");

@@ -12,6 +12,7 @@ namespace DLRHost
             ScriptRuntime runtime = Ruby.CreateRuntime();
             ScriptEngine engine = Ruby.GetEngine(runtime);
             ScriptScope scope = engine.CreateScope();
+
             scope.SetVariable("txt", "IronRuby is awesome!");
             engine.Execute("def self.upper; txt.to_upper; end;", scope);
 
