@@ -26,13 +26,13 @@ class XamlApplication < Application
 end
 
 #run the application
-xaml_path = "Listing3.6.xaml"
+xaml_path = "Biffy.xaml"
 
 XamlApplication.new do
   obj = XamlReader.load XmlReader.create(xaml_path)
   
   obj.find_name('get_url_button').click do 
-    obj.find_name('web_url_display').source = obj.find_name('web_url').text
+    obj.find_name('web_url_display').source = Uri.new obj.find_name('web_url').text
   end
   obj
 end
