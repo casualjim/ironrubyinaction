@@ -8,6 +8,7 @@ module Witty
     attr_accessor :index, :is_new
 
     def initialize
+      @is_new = true
       yield if block_given?
     end
 

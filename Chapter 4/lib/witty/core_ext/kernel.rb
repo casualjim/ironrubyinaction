@@ -18,7 +18,7 @@ module Kernel
     begin
       yield if block_given?
     ensure
-      o.dispose 
+      o.dispose if o
     end
   end
 
