@@ -32,6 +32,7 @@ require 'witty/core_ext'
 
 %w(
   System
+  System::Globalization
   System::Net
   System::Xml
   System::IO
@@ -68,12 +69,12 @@ module Witty
 
   class Application < ::System::Windows::Application
     def initialize(&b)
-      window = instance_eval(&b) if b
-      run window.view
+      proxy = instance_eval(&b) if b
+      run proxy.view
     end
 
     def has_main_window?
-      @main_window.nil?
+      !!@main_window
     end
 
     def set_skin(name)

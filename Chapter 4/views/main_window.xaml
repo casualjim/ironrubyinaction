@@ -8,7 +8,7 @@
         xmlns:witty="clr-namespace:Witty.Controls;assembly=Witty.Controls"
         mc:Ignorable="d"
         x:Name="Window"
-        Title="Sylvester 0.0.1"
+        Title="Witty 0.0.1"
         Width="330" Height="570" MinWidth="200" MinHeight="200"
         WindowStyle="SingleBorderWindow"
         Left="800" Top="50">
@@ -41,7 +41,7 @@
         </ContextMenu>
       </Border.ContextMenu>
       <DockPanel LastChildFill="False">
-        <TextBlock Text="Sylvester" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"
+        <TextBlock Text="Witty" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"
                    FontWeight="Bold" Foreground="{DynamicResource HeaderForegroundBrush}"/>
         <Button Content="Refresh" Height="20" 
                 x:Name="refresh_button" IsEnabled="True" MinWidth="25" MinHeight="20" FontSize="9"

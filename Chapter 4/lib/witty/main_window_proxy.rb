@@ -23,8 +23,11 @@ module Witty
 
       add_login_view
 
-      refresh_button.click &method(:refresh_tweets)
-      update.mouse_left_button_up &method(:toggle_update)
+      refresh_button.click do |s,e|
+        refresh_tweets
+      end
+      upd_act = lambda { |s,e| toggle_update }
+      update.mouse_left_button_up &upd_act
       update_button.click &method(:update_status)
 
       add_refresh_timer
@@ -41,7 +44,7 @@ module Witty
       view_model.tweets.insert 0, tweet if tweet
     end
 
-    def refresh_tweets(s, e)
+    def refresh_tweets
       view_model.tweets.merge! Status.timeline_with_friends(credentials)
       view_model.status_bar_message = "Refreshed tweets"
       refresh
@@ -54,7 +57,7 @@ module Witty
       end
     end
 
-    def toggle_update(s, e)
+    def toggle_update
       if logged_in?
         if @expanded
           play_storyboard "CollapseUpdate"

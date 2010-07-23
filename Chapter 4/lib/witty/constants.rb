@@ -13,7 +13,7 @@ module Witty
       DIRECT_MESSAGES = "http://twitter.com/direct_messages.xml" unless defined? DIRECT_MESSAGES
       REPLIES_TIMELINE = "http://twitter.com/statuses/replies.xml" unless defined? REPLIES_TIMELINE
       SENT_MESSAGES = "http://twitter.com/direct_messages/sent.xml" unless defined? SENT_MESSAGES
-      UPDATE_STATUS = "http://twitter.com/statuses/update.xml" unless defined? TWEETS
+      UPDATE_STATUS = "http://twitter.com/statuses/update.xml" unless defined? UPDATE_STATUS
       FRIENDS_PROFILE = "http://twitter.com/users/show/" unless defined? FRIENDS_PROFILE
       USER = "http://twitter.com/" unless defined? USER
       DESTROY_TWEET = "http://twitter.com/statuses/destroy/" unless defined? DESTROY_TWEET

@@ -17,7 +17,11 @@ class String
   end
 
   def to_created_time
-    Time.parse self
+    created_time = System::DateTime.parse_exact self,
+        Witty::Constants::DateFormats::CREATED_AT_FORMAT,
+        System::Globalization::CultureInfo.get_culture_info_by_ietf_language_tag("en-us"),
+        System::Globalization::DateTimeStyles.allow_white_spaces
+    Time.parse created_time.to_s
   end
 
   def truncate_tweet

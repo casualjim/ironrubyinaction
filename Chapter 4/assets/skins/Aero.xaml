@@ -96,8 +96,8 @@
         </DataTrigger.EnterActions>
       </DataTrigger>
       <!--<Trigger Property="IsMouseOver" Value="True">
-			<Setter Property="Visibility" TargetName="ReplyButton" Value="Visible"/>
-		</Trigger>-->
+        <Setter Property="Visibility" TargetName="ReplyButton" Value="Visible"/>
+      </Trigger>-->
     </DataTemplate.Triggers>
   </DataTemplate>
 
