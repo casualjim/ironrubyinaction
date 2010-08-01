@@ -61,16 +61,16 @@ class Gemtris::GameManager
     stop
     @state = :game_over
     @completed_lines_count = 0
+      
+    Gemtris::Highscores.get { |xml| 
+         reader = XmlReader.create xml
+         doc = XDocument.load reader
+         doc.load reader
+    }
     
-    # Gemtris::Highscores.get { |xml| 
-    #      reader = XmlReader.create xml
-    #      doc = XDocument.load reader
-    #      doc.load reader
-    # }
-    # 
-    # Gemtris::Highscores.submit("Adam", 123) { |sender, e| 
-    #   #raise "#{e.methods.join(", ")}"
-    # }
+    Gemtris::Highscores.submit("Adam", 123) { |sender, e| 
+      raise "#{e.methods.join(", ")}"
+    }
     
     raise "Game over"
   end

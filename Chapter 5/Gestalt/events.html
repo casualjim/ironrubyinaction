@@ -10,13 +10,17 @@
 <script type="text/ruby">
 
 def foobar(s,e)
-  window.alert("Clicked")
+  document.message.innerHTML = "Hello World!"
 end
 
-#document.gidday.attach_event('onclick',System::EventHandler[System::Windows::Browser::HtmlEventArgs].new(method(:foobar)))
+#document.gidday.attach_event('onclick',
+#  System::EventHandler[
+#    System::Windows::Browser::HtmlEventArgs
+#  ].new(method(:foobar))
+#)
 #document.gidday.onclick.add method(:foobar)
 document.gidday.click do |sender, args|
-	foobar(sender, args)
+  foobar(sender, args)
 end
 
 </script>

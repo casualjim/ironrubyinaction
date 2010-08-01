@@ -7,7 +7,7 @@ class Gemtris::Gem
   end
   
   def glimmer 
-    @glimmer_anim ||= find_name("Glimmer")
+    @glimmer_anim ||= find_name('Glimmer')
     @glimmer_anim.begin
   end
   

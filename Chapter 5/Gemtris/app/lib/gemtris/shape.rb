@@ -86,7 +86,7 @@ class Gemtris::Shape
 
     # Now rotate the previously rotated array around 90, 180, 270 degrees
     3.times do
-      orientations << orientations[-1].dup.rotate!
+      orientations << orientations.last.dup.rotate!
     end
     
     orientations

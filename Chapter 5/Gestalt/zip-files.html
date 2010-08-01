@@ -1,10 +1,21 @@
-<script type="application/x-zip-compressed" src="myarchive.zip"></script>
-<script type="application/ruby">
-require 'archivelibrary'
-</script>
+<html>
+<head>
+	<script src="http://visitmix.com/dlr/dlr.js" type="text/javascript"></script>
+</head>
+<body>
 
+  <div id="message"></div>
 
-<script type="application/x-zip-compressed" src="myarchive.zip"></script>
-<script type="application/ruby">
-foo = File.open("myarchive.zip/foo.txt"){ |f| f.read }
-</script>
+  <script type="application/zip" src="myarchive.zip"></script>
+
+  <script type="text/ruby">
+  require 'myarchive.zip/somelib'
+  </script>
+
+  <script type="text/ruby">
+  content = File.open("myarchive.zip/file.txt"){ |f| f.read }
+  window.alert(content)
+  </script>
+
+</body>
+</html>
