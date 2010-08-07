@@ -59,7 +59,7 @@ class UserService
   end
 
   def create_salt
-    [OpenSSL::Random.random_bytes(64)].pack("m*").delete("\n")
+    [OpenSSL::Random.random_bytes(64)].pack("m*").chomp
   end
 
   def create_hash(password, salt)
