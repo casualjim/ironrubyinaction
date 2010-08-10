@@ -15,7 +15,7 @@ class AccountController < ApplicationController
 
   def log_on
     @return_url = ""
-    @return_url = params[:ReturnUrl] if params.contains_key(:ReturnUrl)
+    @return_url = params[:ReturnUrl] if params && params.contains_key(:ReturnUrl)
     view "", 'layout'
   end
 
@@ -58,9 +58,9 @@ class AccountController < ApplicationController
         unless user_service.change_password(user.identity.name, params[:newPassword], params[:confirmPassword])
           return redirect_to_action('change_password_success')
         end
-        model_state.add_model_error "_FORM", "The current password is incorrect or the new password is invalid."
+        model_state.add_model_error "", "The current password is incorrect or the new password is invalid."
       rescue
-        model_state.add_model_error "_FORM", "The current password is incorrect or the new password is invalid."
+        model_state.add_model_error "", "The current password is incorrect or the new password is invalid."
       end
     end
     view '', 'layout'
@@ -71,7 +71,7 @@ class AccountController < ApplicationController
   def validate_logon(username, password)
     model_state.add_model_error("username", "You must specify a username.") if username.to_s.empty?
     model_state.add_model_error("password", "You must specify a password.") if password.to_s.empty?
-    model_state.add_model_error("_FORM", "The username or password provided is incorrect") unless user_service.validate_user(username, password)
+    model_state.add_model_error("", "The username or password provided is incorrect") unless user_service.validate_user(username, password)
 
     return model_state.is_valid
   end
@@ -86,7 +86,7 @@ class AccountController < ApplicationController
     if password.nil? or password.to_s.size < user_service.min_password_length
       model_state.add_model_error "password", "You must specify a password of #{user_service.min_password_length} or more characters"
     end
-    model_state.add_model_error("_FORM", "The password and confirmation password do not match") unless password == confirm_password
+    model_state.add_model_error("", "The password and confirmation password do not match") unless password == confirm_password
 
     return model_state.is_valid
   end

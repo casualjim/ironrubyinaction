@@ -1,4 +1,3 @@
-
 module MockChat
 
   module Models

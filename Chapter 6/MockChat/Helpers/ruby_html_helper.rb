@@ -1,5 +1,3 @@
-
-
 module System::Web::Mvc::IronRuby::Helpers
 
   class RubyHtmlHelper
