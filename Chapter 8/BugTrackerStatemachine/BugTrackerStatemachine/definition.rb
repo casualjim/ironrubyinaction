@@ -21,5 +21,4 @@ Statemachine.build do
   end 
   
   context inserted
-end 
-
+end

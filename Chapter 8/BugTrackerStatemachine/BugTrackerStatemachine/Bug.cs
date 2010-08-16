@@ -10,11 +10,14 @@ namespace BugTrackerStatemachine
         public string Title  { get;	private set; }
 		
         public string Assignee  { get; private set; }
-		
+
+        //public object Statemachine { get; set; }
         public dynamic Statemachine  { get; set; }
 		
         public string DefinitionPath  { get; set; }
-		
+
+        //private ObjectOperations _rubyOperations;
+
         private static ScriptEngine _engine = Ruby.CreateEngine();
 				
         public Bug(string title)
@@ -27,13 +30,16 @@ namespace BugTrackerStatemachine
             ExecuteRubyDefinition();
         }
 		
-        private void ExecuteRubyDefinition(){
+        private void ExecuteRubyDefinition()
+        {
+            //_rubyOperations = _engine.CreateOperations();
             var scope = _engine.CreateScope();
             scope.SetVariable("ctxt", this);
             _engine.ExecuteFile(DefinitionPath, scope);
         }
 		
-        public virtual void Deassign(){
+        public virtual void Deassign()
+        {
             Assignee = null;
         }
 		
@@ -48,7 +54,8 @@ namespace BugTrackerStatemachine
 
         public virtual void Deassigned()
         {
-            if(Assignee != null) SendEmailToAssignee("You're off the hook."); // Deassign needs Assignee
+            if (Assignee != null)
+                SendEmailToAssignee("You're off the hook."); // Deassign needs Assignee
         }
 
         public virtual void SendEmailToAssignee(string message)
@@ -56,17 +63,22 @@ namespace BugTrackerStatemachine
             Console.WriteLine("{0}, RE {1}: {2}", Assignee, Title, message);
         }
 		
-        public virtual void Assign(string assignee){
+        public virtual void Assign(string assignee)
+        {
+            //_rubyOperations.InvokeMember(Statemachine, "assign", assignee);
             Statemachine.assign(assignee);
         }
 		
-        public virtual void Defer(){
+        public virtual void Defer()
+        {
+            //_rubyOperations.InvokeMember(Statemachine, "defer");
             Statemachine.defer();
         }
 		
-        public virtual void Close(){
+        public virtual void Close()
+        {
+            //_rubyOperations.InvokeMember(Statemachine, "close");
             Statemachine.close();
         }
-		
     }
 }
