@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 namespace ClrModels {
-	public class Ninja : IWarrior{
+  public class Ninja : IWarrior{
 
     public Ninja(){
       Name = "Tony the Ninja";

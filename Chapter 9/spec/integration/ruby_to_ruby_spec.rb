@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + "/../spec_helper"
 
-shared_examples_for "a ruby to ruby interaction" do
+shared_examples_for "a Ruby to Ruby interaction" do
   
   it "should work without expectations" do
     result = @dagger.attack @soldier
@@ -107,7 +107,7 @@ describe "Ruby to Ruby interactions" do
       @soldier = isolate Soldier
     end
 
-    it_should_behave_like 'a ruby to ruby interaction'
+    it_should_behave_like 'a Ruby to Ruby interaction'
   end
   
   describe "when isolating Ruby classes with class members" do
@@ -117,7 +117,7 @@ describe "Ruby to Ruby interactions" do
       @soldier = isolate SoldierWithClassMembers
     end
     
-    it_should_behave_like 'a ruby to ruby interaction'    
+    it_should_behave_like 'a Ruby to Ruby interaction'    
     
     it "should work for an expctation on a class method without an argument constraint" do
       @soldier.when_class_receives(:class_name).return(5)
@@ -135,7 +135,7 @@ describe "Ruby to Ruby interactions" do
       @soldier = isolate Soldier.new
     end
     
-    it_should_behave_like 'a ruby to ruby interaction'
+    it_should_behave_like 'a Ruby to Ruby interaction'
     
     it "should allow to delegate the method call to the real instance (partial mock)" do
       @soldier.when_receiving(:survive_attack_with).super_after

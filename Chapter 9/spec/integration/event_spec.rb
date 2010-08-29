@@ -11,13 +11,17 @@ shared_examples_for "an event publisher" do
   end
   
   it "should raise an event when no block is given" do
-   @proxy.when_receiving(:explode).return(nil).raise_event(:on_is_exposed_changed)
-   @proxy.explode
-   @subscriber.counter.should == 1
+    @proxy.when_receiving(:explode)
+          .return(nil)
+          .raise_event(:on_is_exposed_changed)
+    @proxy.explode
+    @subscriber.counter.should == 1
   end
 
   it "should raise an event with the provided parameters" do
-    @proxy.when_receiving(:explode).return(nil).raise_event(:on_is_exposed_changed, @sender, @ags)
+    @proxy.when_receiving(:explode)
+          .return(nil)
+          .raise_event(:on_is_exposed_changed, @sender, @ags)
     @proxy.explode
     @subscriber.sender.should == @sender
     @subscriber.args.should == @ags
@@ -26,7 +30,9 @@ shared_examples_for "an event publisher" do
   it "should allow overriding the default event handler" do
     cnt, rsen, rar = 0, nil, nil
     handler = lambda { |sen, ar| cnt +=1; rsen = sen; rar=ar   }
-    @proxy.when_receiving(:explode).return(nil).raise_event(:on_is_exposed_changed, @sender, @ags, &handler)
+    @proxy.when_receiving(:explode)
+          .return(nil)
+          .raise_event(:on_is_exposed_changed, @sender, @ags, &handler)
     @proxy.explode
     rsen.should == @sender
     rar.should == @ags
@@ -48,13 +54,17 @@ shared_examples_for "an event publisher" do
   end
 
   it "should verify if an event was raised" do
-    @proxy.when_receiving(:explode).return(nil).raise_event(:on_is_exposed_changed)
+    @proxy.when_receiving(:explode)
+          .return(nil)
+          .raise_event(:on_is_exposed_changed)
     @proxy.explode
     @proxy.should have_raised(:on_is_exposed_changed)
   end
 
   it "should verify if an event was raised with specific parameters" do
-    @proxy.when_receiving(:explode).return(nil).raise_event(:on_is_exposed_changed, @sender, @ags)
+    @proxy.when_receiving(:explode)
+          .return(nil)
+          .raise_event(:on_is_exposed_changed, @sender, @ags)
     @proxy.explode
     @proxy.should have_raised(:on_is_exposed_changed) { |ev| ev.with(@sender, @ags)}
   end
